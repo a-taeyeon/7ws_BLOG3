@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- <body style="background-color: yellow;">
+<div class="container"><br><br>
+    <form action="{% url 'update' update.id %}" method="POST" enctype="multiplart/form-data">
+        {% csrf_token %}
+        <h3><input type="text" name="t" value="{{form.title}}"></h3><br>
+        {{update.pub_date}}<br>
+        <input type="file" name="p">
+        <textarea cols=40 rows=10 name="b">{{form.body}}</textarea><br><br>
+        <input type="submit" value="확인">
+    </form>   
+ </div>
+</body> -->
+
+
+<div class="container"><br>
+    <form method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        <table>
+            {{form.as_table}}
+        </table>
+        <br>
+        <input class="btn btn-dark" type="submit" value="제출하기">
+    </form>
+</div>
+
+ {%endblock%}

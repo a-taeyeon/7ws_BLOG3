@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<div class="container">총 글 수: {{ blogs.count }}<br><br></div>
+{% for blog in posts %}
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+        <h5 class="card-title">{{ blog.title }}</h5>
+        <hr style="border-style: dotted;">
+        <img src="{{blog.photo.url}}" height="100"><br>
+        <br>
+        <h6 class="card-subtitle mb-2 text-muted">{{ blog.pub_date }}</h6>
+        <p class="card-text">{{blog.summary}}<a href="{%url 'detail' blog.id%}" class="card-link">&nbsp;&nbsp;...more</a><br></p>
+        <a href="{% url 'update' blog.id %}" class="card-link">수정</a>&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'delete' blog.id %}" class="card-link">삭제</a>&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+<br>    
+{% endfor %}
+
+<div class="container">
+    <!--First    Previous-->
+    {%if posts.has_previous%}
+    <a href="?page=1">First</a>
+    <a href="?page={{posts.previous_page_number}}">Previous</a>
+    {%endif%}
+
+    <!-- 3of4 -->
+    <span>{{posts.number}}</span>
+    <span>of</span>
+    <span>{{posts.paginator.num_pages}}</span>
+    
+    <!--Next     Last-->
+    {%if posts.has_next%}
+    <a href="?page={{posts.next_page_number}}">Next</a>
+    <a href="?page={{posts.paginator.num_pages}}">Last</a>
+    {%endif%}
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- <br>
+<div class="container">
+	<form method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
+        {% csrf_token %}    
+        <h4>제목: </h4>
+        <input type="text" class="form-control" name="title"><br>
+        <label for="img">UPLOAD</label>
+        <input type="file" name="photo"><br><br>
+        <h4>본문: </h4>
+        <textarea class="form-control" cols=40 rows=10 name="body"></textarea><br>
+        <br>
+        <input class="btn btn-dark" type="submit" value="제출하기">
+  </form>
+</div> -->
+
+<div class='container'><br>
+  <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table>
+          {{form.as_table}}
+      </table>
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input class="btn btn-dark" type="submit" value="제출하기">
+  </form>
+</div>
+
+{% endblock %}
